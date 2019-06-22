@@ -17,18 +17,27 @@ namespace Features
 
             write(square((add(3,5))));
 
-            IEnumerable<Employee> developers = new Employee[]
+            var developers = new Employee[]
             {
                 new Employee {ID = 1, Name = "Scott"},
                 new Employee {ID = 2, Name = "Chris"}
             };
 
-            IEnumerable<Employee> sales = new List<Employee>()
+            var sales = new List<Employee>()
             {
                 new Employee {ID = 3, Name = "Alex"}
             };
 
-            foreach (var employee in developers.Where(e => e.Name.Length ==5).OrderBy(e => e.Name))
+            var query = developers.Where(e => e.Name.Length == 5)
+                                  .OrderBy(e => e.Name)
+                                  .Select (e => e);
+
+            var query2 = from developer in developers
+                         where developer.Name.Length == 5
+                         orderby developer.Name
+                         select developer;
+
+            foreach (var employee in query2)
             {
                 Console.WriteLine(employee.Name);
 
