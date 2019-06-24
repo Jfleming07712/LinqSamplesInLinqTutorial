@@ -24,12 +24,13 @@ namespace Cars
                     car.Combined
                 };
 
-            var result = cars.Select ( c => c.Name);
+            var result = cars.SelectMany(c => c.Name)
+                             .OrderBy(c => c);
 
-            foreach (var name in result)
+
+            foreach (var character in result)
             {
-                Console.WriteLine(name);
-
+                    Console.WriteLine(character);
             }
 
             //foreach (var car in query.Take(10))
